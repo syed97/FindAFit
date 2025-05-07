@@ -1,0 +1,83 @@
+
+/* --- Styles for Product List within Bot Message --- */
+
+/* Style the introductory text if present */
+.message.bot .intro-text {
+  margin-bottom: 10px; /* Space between intro and list */
+}
+
+/* Style the product list container */
+.message.bot .product-list {
+  list-style: none; /* Remove default bullets */
+  padding-left: 0;  /* Remove default padding */
+  margin-top: 5px;  /* Adjust top margin if intro-text isn't always present */
+  margin-bottom: 0; /* Reset bottom margin */
+}
+
+/* Style each product item */
+.message.bot .product-item {
+  margin-bottom: 12px; /* Space between list items */
+  padding-left: 12px; /* Indentation */
+  border-left: 3px solid #007bff; /* Accent border (adjust color to match theme) */
+  position: relative; /* For potential pseudo-elements if needed */
+}
+/* Remove margin from last item */
+.message.bot .product-item:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Style product name */
+.message.bot .product-name {
+  display: block; /* Make it block level */
+  font-weight: 600; /* Bold */
+  margin-bottom: 3px; /* Space below name */
+  color: #212529; /* Darker color for name */
+}
+
+/* Style product description */
+.message.bot .product-description {
+  font-size: 0.9em; /* Slightly smaller font */
+  color: #495057; /* Softer color for description */
+  line-height: 1.4;
+  margin: 0; /* Reset paragraph margin */
+}
+
+/* Optional: Style for product ID if you uncomment it */
+
+.message.bot .product-id {
+  display: block;
+  font-size: 0.8em;
+  color: #adb5bd;
+  margin-top: 4px;
+}
+
+
+/* spinner + text in the loading-indicator */
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 8px 0;
+  }
+  
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0,0,0,0.1);
+    border-top: 3px solid #007bff; /* match your accent color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+  }
+  
+  .loading-text {
+    font-style: italic;
+    color: #6c757d;
+    font-size: 0.9em;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  

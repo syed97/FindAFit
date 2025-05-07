@@ -1,0 +1,311 @@
+/* src/App.css */
+
+/* Basic Reset & Body */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%; /* Ensure html takes full height */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* System font stack */
+  background-color: #f4f7f6;
+  color: #333;
+  height: 100%; /* Ensure body takes full height */
+  overflow: hidden; /* Prevent body scrollbars */
+}
+
+/* Ensure root element takes full height for React */
+#root {
+    height: 100%;
+}
+
+/* Import Google Font (Optional - place at top) */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap'); */
+/* If using Poppins, update font-family for .logo-text in FindAFitLogo.css and maybe body */
+
+
+/* New App Layout */
+.app-layout {
+  display: flex;
+  flex-direction: column; /* Stack header and main content vertically */
+  height: 100%; /* Full viewport height */
+  background-color: #fff; /* Background for the entire app */
+  max-width: 1400px; /* Optional: Max width */
+  margin: 0 auto; /* Center */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Optional: Shadow */
+  overflow: hidden; /* Hide overflow on the main layout */
+}
+
+/* Header Styles */
+.app-header {
+  display: flex;
+  justify-content: space-between; /* Pushes logo left, button group right */
+  align-items: center;
+  padding: 10px 25px; /* Vertical and horizontal padding */
+  background-color: #ffffff; /* White header */
+  border-bottom: 1px solid #e0e0e0; /* Subtle border */
+  min-height: 60px; /* Minimum height */
+  flex-shrink: 0; /* Prevent header from shrinking */
+  position: relative; /* Needed if adding absolute elements later */
+  z-index: 10; /* Keep header above content if needed */
+}
+
+/* Group for Header Buttons */
+.header-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  align-items: center;
+}
+
+/* Common button styles within header group */
+.header-buttons button {
+  padding: 8px 15px; /* Adjusted padding for consistency */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;   /* Consistent font size */
+  font-weight: 500;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Subtle shadow for all */
+}
+
+.header-buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none; /* Remove shadow when disabled */
+}
+
+/* Specific Header Button Styles */
+.restart-button { /* Style for the button with this specific class */
+  background-color: #fa0f0f; /* Grey */
+  color: white;
+  /* Your original red: #ec1919; */
+}
+.restart-button:hover:not(:disabled) {
+  background-color: #cd1111; /* Darker grey on hover */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Slightly enhance shadow */
+}
+
+.view-toggle-button {
+  background-color: #0d6efd; /* Blue */
+  color: white;
+  min-width: 140px; /* Ensure enough space for text like "View Cart (X)" */
+  text-align: center;
+}
+.view-toggle-button:hover:not(:disabled) {
+  background-color: #0b5ed7;
+   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.clear-cart-button {
+  background-color: #dc3545; /* Red */
+  color: white;
+}
+.clear-cart-button:hover:not(:disabled) {
+  background-color: #bb2d3b;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+
+/* Main Content Area (Image + Chat) */
+.main-content {
+  display: flex; /* Arrange image and chat side-by-side */
+  flex-grow: 1; /* Take remaining vertical space */
+  overflow: hidden; /* Prevent scrollbars on this container, children handle scroll */
+  background-color: #f8f9fa; /* Background for the content area */
+}
+
+/* Image Area Styles */
+.image-area {
+  flex: 1; /* Takes up half the space */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #dee2e6;
+  position: relative;
+  overflow: hidden; /* Hide overflow within image area */
+}
+
+/* Chat Area Styles */
+.chat-area {
+  flex: 1; /* Takes up the other half */
+  display: flex; /* Use flex to make ChatInterface fill it */
+  flex-direction: column;
+  background-color: #ffffff; /* White background for chat */
+  overflow: hidden; /* Let chat-interface handle internal scroll */
+}
+
+/* Chat Interface component itself */
+.chat-interface {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Fill the chat-area */
+}
+
+/* Message List Styles */
+.message-list {
+  flex-grow: 1; /* Takes up available space */
+  overflow-y: auto; /* Enable scrolling for messages */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Space between messages */
+}
+
+/* Individual Message Styles */
+.message {
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 80%; /* Max width of message bubble */
+  word-wrap: break-word; /* Prevent long words from overflowing */
+  line-height: 1.4;
+}
+.message p {
+  margin: 0; /* Remove default paragraph margin */
+}
+
+.message.user {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end; /* Align user messages to the right */
+  border-bottom-right-radius: 5px; /* Slightly different corner */
+  margin-left: auto; /* Push to right */
+}
+
+.message.bot {
+  background-color: #e9ecef;
+  color: #333;
+  align-self: flex-start; /* Align bot messages to the left */
+  border-bottom-left-radius: 5px; /* Slightly different corner */
+  margin-right: auto; /* Push to left */
+}
+
+/* Loading Indicator */
+.loading-indicator {
+  padding: 8px 15px;
+  font-style: italic;
+  color: #6c757d;
+  text-align: center;
+  font-size: 0.9em;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+/* Add spinner specific styles if not already in ChatInterface.css */
+.loading-indicator .spinner {
+  display: inline-block;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #007bff; /* Spinner color */
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* Message Input Form */
+.message-input-form {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.message-input-form input[type="text"] {
+  flex-grow: 1;
+  padding: 10px 15px;
+  border: 1px solid #ced4da;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-size: 1em;
+}
+.message-input-form input[type="text"]:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.message-input-form input[type="text"]:disabled {
+   background-color: #e9ecef;
+   cursor: not-allowed;
+}
+
+.message-input-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+.message-input-form button:hover:not(:disabled) { /* Add :not(:disabled) */
+  background-color: #0056b3;
+}
+.message-input-form button:disabled {
+  background-color: #adb5bd; /* Use a consistent disabled color */
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app-header {
+      padding: 8px 15px;
+      min-height: 55px;
+  }
+  /* Consider adding media query in FindAFitLogo.css for smaller font size */
+
+  /* Adjust header buttons for smaller screens */
+  .header-buttons {
+      gap: 5px; /* Reduce gap */
+  }
+  .header-buttons button {
+      padding: 6px 10px; /* Smaller padding */
+      font-size: 0.8em; /* Smaller font */
+  }
+   .view-toggle-button {
+      min-width: 110px; /* Adjust min-width */
+   }
+
+  .main-content {
+      flex-direction: column; /* Stack image and chat vertically */
+      /* Allow content to scroll on small screens if needed */
+      /* overflow: auto; */ /* Uncomment this if needed */
+  }
+  .image-area {
+     /* Let height be determined by aspect ratio or content */
+     min-height: 200px; /* Minimum height */
+     max-height: 40vh; /* Max height relative to viewport */
+     border-right: none;
+     border-bottom: 1px solid #dee2e6;
+     padding: 15px;
+     flex-basis: auto; /* Allow shrinking/growing */
+  }
+   .chat-area {
+       flex: 1; /* Takes remaining space */
+       min-height: 50vh; /* Ensure chat has enough vertical space */
+   }
+
+   /* Make message input slightly smaller on mobile */
+   .message-input-form input[type="text"] {
+       padding: 8px 12px;
+       font-size: 0.95em;
+   }
+    .message-input-form button {
+       padding: 8px 15px;
+       font-size: 0.95em;
+   }
+}

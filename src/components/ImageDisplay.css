@@ -1,0 +1,209 @@
+.image-display-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-grid {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Increased gap slightly */
+  justify-content: center; /* Center items horizontally */
+  align-items: flex-start; /* Align items to the top */
+  overflow-y: auto; /* Scroll if content overflows */
+  padding: 10px; /* Add padding inside the grid */
+}
+
+/* Style for the card container */
+.image-card {
+  position: relative; /* Needed for absolute positioning of the overlay */
+  flex: 0 1 200px; /* Flex-basis: don't grow, shrink if needed, base width 150px */
+  max-width: 200px; /* Max width for consistency */
+  height: auto; /* Height determined by content/aspect ratio */
+  border-radius: 8px;
+  overflow: hidden; /* Clip the overlay */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  background-color: #fff; /* Background for the card */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.image-card:hover {
+  transform: translateY(-3px); /* Slight lift on hover */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the image itself */
+.suggested-image {
+  display: block; /* Remove extra space below image */
+  width: 100%;
+  height: 200px; /* Fixed height for images */
+  object-fit: cover; /* Cover the area, cropping if necessary */
+  border-radius: 0; /* Image doesn't need rounding if card has it */
+  transition: opacity 0.3s ease;
+}
+
+/* Style for the overlay */
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent black */
+  color: #ffffff;
+  padding: 10px;
+  box-sizing: border-box; /* Include padding in width/height */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Horizontally center content */
+  text-align: center;
+
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none; /* Allow hover on card, not overlay itself initially */
+}
+
+/* Show overlay on card hover */
+.image-card:hover .image-overlay {
+  opacity: 1;
+  pointer-events: auto; /* Make overlay interactable if needed */
+}
+
+/* Dim image slightly when overlay is shown for better text visibility */
+.image-card:hover .suggested-image {
+  opacity: 0.4;
+}
+
+/* Handle image load error state */
+.image-card.has-error .image-overlay {
+    background-color: rgba(200, 0, 0, 0.6); /* Indicate error visually */
+    opacity: 1; /* Show overlay immediately if image failed */
+}
+.image-card.has-error .overlay-name::before {
+    content: '⚠️ ';
+}
+
+
+/* Styles for text inside the overlay */
+.overlay-name {
+  font-size: 0.9em;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+
+.overlay-desc {
+  font-size: 0.8em;
+  margin: 0 0 8px 0;
+  /* Limit description lines if needed */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Show max 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.overlay-id {
+  font-size: 0.7em;
+  font-style: italic;
+  color: #ccc; /* Lighter color for ID */
+}
+
+
+/* Placeholder styles remain mostly the same */
+.image-placeholder {
+  text-align: center;
+  color: #adb5bd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+}
+
+.placeholder-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+  color: #ced4da;
+}
+
+.placeholder-text {
+  font-size: 1.1em;
+  color: #6c757d;
+}
+
+/* Style for the Add/Remove button on the card */
+.card-action-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10; /* Ensure it's above the image but potentially below the overlay if overlay is fully opaque */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  border: none;
+  border-radius: 50%; /* Circular button */
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  color: #333; /* Icon color */
+}
+
+.card-action-button:hover {
+  background-color: rgba(255, 255, 255, 1); /* Opaque on hover */
+  transform: scale(1.1);
+}
+
+.card-action-button svg {
+  width: 18px; /* Adjust icon size */
+  height: 18px;
+}
+
+/* Specific styles for button types */
+.card-action-button.remove {
+  color: #dc3545; /* Red for remove */
+}
+.card-action-button.remove:hover {
+   background-color: #dc3545;
+   color: #fff;
+}
+
+.card-action-button.add {
+   color: #0d6efd; /* Blue for add */
+}
+.card-action-button.add:hover {
+   background-color: #0d6efd;
+   color: #fff;
+}
+
+
+/* Style for when item is already added (in suggestions view) */
+.card-action-button.add.added {
+  background-color: #198754; /* Green background */
+  color: #fff; /* White checkmark */
+  cursor: not-allowed; /* Indicate it's not clickable */
+  opacity: 0.8;
+}
+.card-action-button.add.added:hover {
+  transform: none; /* No scale effect if disabled */
+  background-color: #198754; /* Keep color on hover */
+}
+
+.card-action-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}

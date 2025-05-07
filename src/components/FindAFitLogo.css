@@ -1,0 +1,37 @@
+/* src/FindAFitLogo.css */
+.logo-container {
+    display: inline-block; /* Allows it to sit nicely in the header flex */
+  }
+  
+  .logo-text {
+    /* If using Google Fonts, update font-family here */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Match base font */
+    font-size: 1.8em; /* Size for header */
+    font-weight: bold;
+    line-height: 1; /* Keep it compact vertically */
+    color: #495057;
+    white-space: nowrap; /* Prevent wrapping */
+    user-select: none; /* Prevent text selection */
+  }
+  
+  .logo-find {
+    color: #007bff; /* Blue */
+  }
+  
+  .logo-a {
+    font-style: italic;
+    font-weight: 500; /* Medium weight */
+    color: #ff6b6b; /* Coral color */
+    margin: 0 1px; /* Slightly reduce spacing */
+  }
+  
+  .logo-fit {
+    color: #28a745; /* Green */
+  }
+  
+  /* Responsive font size for logo */
+  @media (max-width: 768px) {
+    .logo-text {
+      font-size: 1.5em; /* Slightly smaller on mobile */
+    }
+  }
