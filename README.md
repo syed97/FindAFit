@@ -1,9 +1,11 @@
-# Find-a-Fit: Your AI-Powered Fashion Discovery Chatbot
+# Find-A-Fit: Your AI-Powered Fashion Discovery Chatbot
 
 **Discover clothing, get recommendations, and build your perfect outfit through an intuitive and interactive chat experience!**
 
 Check out our demo here: https://youtu.be/bry2mMTu_FU
 ---
+
+![Find-A-Fit](./main.png)
 
 ## About The Project
 
