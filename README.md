@@ -2,6 +2,7 @@
 
 **Discover clothing, get recommendations, and build your perfect outfit through an intuitive and interactive chat experience!**
 
+Check out our demo here: https://youtu.be/bry2mMTu_FU
 ---
 
 ## About The Project
